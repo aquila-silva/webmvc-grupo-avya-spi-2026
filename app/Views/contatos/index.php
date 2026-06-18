@@ -9,7 +9,7 @@
 <body>
     <main class="container">
         <section class="card">
-            <h1>Cadastro de Contatos</h1>
+            <h1>Realização de cadastros de telefones de usuarios</h1>
             <p>Utilize esta página para consultar e gerenciar os contatos
 cadastrados.</p>
 
