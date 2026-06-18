@@ -9,17 +9,15 @@
 <body>
     <main class="container">
         <section class="card">
-            <h1>Realização de cadastros de telefones de usuarios</h1>
-            <p>Utilize esta página para consultar e gerenciar os contatos
-cadastrados.</p>
+
 
             <p class="descricao">
                 Aplicação didática organizada em camadas:
                 <strong>View → Controller → Service → Repository → Banco de Dados</strong>.
             </p>
 
-            <?php if ($mensagem !== ''): ?>
-                <div class="alerta <?= htmlspecialchars($tipoMensagem) ?>">
+            <?php if (isset($mensagem) && $mensagem !== ''): ?>
+                <div class="alerta <?= htmlspecialchars($tipoMensagem ?? 'info') ?>">
                     <?= htmlspecialchars($mensagem) ?>
                 </div>
             <?php endif; ?>
@@ -32,15 +30,16 @@ cadastrados.</p>
                     id="nome"
                     maxlength="100"
                     placeholder="Digite o nome"
+                    required
                 >
 
                 <label for="email">E-mail</label>
                 <input
-                    type="text"
-                    name="email"
+                    type="email" name="email"
                     id="email"
                     maxlength="150"
                     placeholder="nome@email.com"
+                    required
                 >
 
                 <label for="mensagem">Mensagem</label>
@@ -58,7 +57,7 @@ cadastrados.</p>
         <section class="card">
             <h2>Contatos cadastrados</h2>
 
-            <?php if (count($contatos) === 0): ?>
+            <?php if (!isset($contatos) || empty($contatos)): ?>
                 <p>Nenhum contato cadastrado.</p>
             <?php else: ?>
                 <div class="tabela-container">
@@ -78,7 +77,7 @@ cadastrados.</p>
                                     <td><?= htmlspecialchars((string) $contato['id']) ?></td>
                                     <td><?= htmlspecialchars($contato['nome']) ?></td>
                                     <td><?= htmlspecialchars($contato['email']) ?></td>
-                                    <td><?= htmlspecialchars($contato['mensagem']) ?></td>
+                                    <td class="celula-mensagem"><?= htmlspecialchars($contato['mensagem']) ?></td>
                                     <td><?= htmlspecialchars($contato['criado_em']) ?></td>
                                 </tr>
                             <?php endforeach; ?>
