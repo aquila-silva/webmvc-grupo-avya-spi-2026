@@ -8,10 +8,10 @@
 </head>
 <body>
     <main class="container">
+        
         <section class="card">
             <h1>Cadastro de Contatos</h1>
-            <p>Utilize esta página para consultar e gerenciar os contatos
-cadastrados.</p>
+            <p>Utilize esta página para consultar e gerenciar os contatos cadastrados.</p>
 
             <p class="descricao">
                 Aplicação didática organizada em camadas:
@@ -56,6 +56,23 @@ cadastrados.</p>
         </section>
 
         <section class="card">
+            <h2>Buscar Contatos</h2>
+            <p>Filtre os contatos cadastrados pelo nome ou e-mail.</p>
+            <form action="index.php" method="get">
+                <label for="busca">Pesquisar</label>
+                <input
+                    type="text"
+                    name="busca"
+                    id="busca"
+                    maxlength="100"
+                    placeholder="Digite sua busca..."
+                    value="<?= htmlspecialchars($_GET['busca'] ?? '') ?>"
+                >
+                <button type="submit">Buscar</button>
+            </form>
+        </section>
+
+        <section class="card">
             <h2>Contatos cadastrados</h2>
 
             <?php if (count($contatos) === 0): ?>
@@ -87,6 +104,7 @@ cadastrados.</p>
                 </div>
             <?php endif; ?>
         </section>
+        
     </main>
 </body>
 </html>
